@@ -94,3 +94,37 @@ app.post("/livros", (request, response) => {
   })
  })
 })
+
+app.get("livros/:id",(request, response)=>{
+ const updateSql = /*sql*/`UPDATE livros SET titulo = "${titulo}", autor = "${autor}", `
+})
+app.put("/livros/:id", (request, response)=>{
+
+})
+
+app.delete("livros/:id", (request, response)=>{
+ const {id} = request.params
+
+ const deleletSql = /*sql*/`DELETE FROM livros WHERE livros_id = "${id}"`
+
+ conn.query(deleletSql, (err, info)=>{
+  if (err) {
+   console.error(err)
+   response.status(500).json({err:"Erro ao deletar livro"})
+   return
+  }
+
+  if (info.affectedRows === 0) {
+    response.status(200).json("Livro deletado")
+  }
+ })
+})
+
+/*************** ROTAS DE FUNCIONÁRIOS *************** */
+/* tabela(id, nome, cargo, data_contartação, salario, email, created_at, update_at)
+/* 1º listar todos os funcionários
+/* 2º cadastrar um funcionário (email único)
+/* 3º listar um funcionário
+/* 4º atualizar um funcionário (email único)
+/* 5º deletar um funcionário 
+*/
